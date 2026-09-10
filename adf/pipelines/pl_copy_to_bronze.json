@@ -1,0 +1,46 @@
+{
+  "name": "pl_copy_to_bronze",
+  "properties": {
+    "description": "Copy a parameterized landing file to an immutable Bronze snapshot partition.",
+    "parameters": {
+      "entity": { "type": "String" },
+      "sourceFile": { "type": "String" },
+      "snapshotDate": { "type": "String" },
+      "runId": { "type": "String" }
+    },
+    "activities": [
+      {
+        "name": "Copy landing to bronze",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": { "timeout": "0.02:00:00", "retry": 3, "retryIntervalInSeconds": 60 },
+        "typeProperties": {
+          "source": { "type": "DelimitedTextSource" },
+          "sink": { "type": "DelimitedTextSink", "copyBehavior": "PreserveHierarchy" }
+        },
+        "inputs": [
+          {
+            "referenceName": "ds_delimited_text_parameterized",
+            "type": "DatasetReference",
+            "parameters": {
+              "filesystem": "landing",
+              "folderPath": { "value": "@pipeline().parameters.entity", "type": "Expression" },
+              "fileName": { "value": "@pipeline().parameters.sourceFile", "type": "Expression" }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_delimited_text_parameterized",
+            "type": "DatasetReference",
+            "parameters": {
+              "filesystem": "bronze",
+              "folderPath": { "value": "@concat(pipeline().parameters.entity, '/ingest_date=', pipeline().parameters.snapshotDate, '/run_id=', pipeline().parameters.runId)", "type": "Expression" },
+              "fileName": { "value": "@pipeline().parameters.sourceFile", "type": "Expression" }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

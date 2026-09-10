@@ -1,0 +1,10 @@
+{
+  "name": "ls_adls_managed_identity",
+  "properties": {
+    "annotations": ["Managed identity authentication; no account keys"],
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://{{storage_account}}.dfs.core.windows.net"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ds_binary_parameterized",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_adls_managed_identity",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "filesystem": { "type": "String" },
+      "folderPath": { "type": "String" },
+      "fileName": { "type": "String" }
+    },
+    "type": "Binary",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": { "value": "@dataset().filesystem", "type": "Expression" },
+        "folderPath": { "value": "@dataset().folderPath", "type": "Expression" },
+        "fileName": { "value": "@dataset().fileName", "type": "Expression" }
+      }
+    }
+  }
+}

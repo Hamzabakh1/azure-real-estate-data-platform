@@ -1,0 +1,10 @@
+{
+  "name": "ls_key_vault_managed_identity",
+  "properties": {
+    "annotations": ["Use only for optional external-source credentials"],
+    "type": "AzureKeyVault",
+    "typeProperties": {
+      "baseUrl": "https://{{key_vault}}.vault.azure.net/"
+    }
+  }
+}

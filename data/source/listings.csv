@@ -1,0 +1,14 @@
+listing_id,property_type,city,district,latitude,longitude,bedrooms,bathrooms,area_sqm,price_mad,status,listed_at,agency_id
+L001,apartment,Casablanca,Maarif,33.5731,-7.5898,2,1,86,1280000,active,2026-08-01,AG001
+L002,villa,Casablanca,Ain Diab,33.5922,-7.6787,4,3,310,6200000,pending,2026-07-18,AG001
+L003,office,Casablanca,Sidi Maarouf,33.5292,-7.6415,0,2,140,2450000,active,2026-08-12,AG001
+L004,apartment,Rabat,Agdal,34.0026,-6.8469,3,2,118,1980000,sold,2026-06-22,AG003
+L005,villa,Rabat,Hay Riad,33.9716,-6.8375,5,4,420,7900000,active,2026-07-05,AG003
+L006,apartment,Marrakech,Gueliz,31.6342,-8.0110,2,2,92,1760000,sold,2026-05-28,AG002
+L007,villa,Marrakech,Route De L Ourika,31.5513,-7.9697,4,4,360,5400000,active,2026-07-29,AG002
+L008,apartment,Agadir,Founty,30.4048,-9.6028,2,1,79,1180000,active,2026-08-20,AG004
+L009,house,Agadir,Dakhla,30.3955,-9.5480,3,2,165,2140000,pending,2026-06-30,AG004
+L010,land,Agadir,Drarga,30.4240,-9.4830,0,0,520,1560000,active,2026-08-03,AG004
+L011,apartment,Tangier,Malabata,35.7774,-5.7670,3,2,125,2350000,active,2026-07-10,AG003
+L012,office,Rabat,Hassan,34.0209,-6.8300,0,1,72,1320000,active,2026-08-17,AG003
+L013,castle,Nowhere,Unknown,0,0,-1,0,4,-500,unknown,2026-99-99,AG999

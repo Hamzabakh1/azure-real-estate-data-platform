@@ -1,0 +1,45 @@
+{
+  "name": "pl_copy_reference_to_bronze",
+  "properties": {
+    "description": "Copy an immutable JSON reference snapshot into Bronze without parsing it.",
+    "parameters": {
+      "entity": { "type": "String" },
+      "sourceFile": { "type": "String" },
+      "snapshotDate": { "type": "String" },
+      "runId": { "type": "String" }
+    },
+    "activities": [
+      {
+        "name": "Copy JSON reference to Bronze",
+        "type": "Copy",
+        "policy": { "timeout": "0.02:00:00", "retry": 3, "retryIntervalInSeconds": 60 },
+        "typeProperties": {
+          "source": { "type": "BinarySource" },
+          "sink": { "type": "BinarySink" }
+        },
+        "inputs": [
+          {
+            "referenceName": "ds_binary_parameterized",
+            "type": "DatasetReference",
+            "parameters": {
+              "filesystem": "landing",
+              "folderPath": { "value": "@pipeline().parameters.entity", "type": "Expression" },
+              "fileName": { "value": "@pipeline().parameters.sourceFile", "type": "Expression" }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_binary_parameterized",
+            "type": "DatasetReference",
+            "parameters": {
+              "filesystem": "bronze",
+              "folderPath": { "value": "@concat(pipeline().parameters.entity, '/ingest_date=', pipeline().parameters.snapshotDate, '/run_id=', pipeline().parameters.runId)", "type": "Expression" },
+              "fileName": { "value": "@pipeline().parameters.sourceFile", "type": "Expression" }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

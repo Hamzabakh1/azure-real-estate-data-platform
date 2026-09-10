@@ -1,0 +1,11 @@
+{
+  "name": "ls_azure_sql_managed_identity",
+  "properties": {
+    "annotations": ["Requires an Azure SQL contained user for the Data Factory managed identity"],
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source={{sql_server}}.database.windows.net;Initial Catalog={{database}};",
+      "authenticationType": "SystemAssignedManagedIdentity"
+    }
+  }
+}

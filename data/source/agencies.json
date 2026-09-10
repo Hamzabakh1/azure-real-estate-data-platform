@@ -1,0 +1,26 @@
+[
+  {
+    "agency_id": "AG001",
+    "agency_name": "Atlas Habitat",
+    "city": "Casablanca",
+    "email": "data@atlas-habitat.example"
+  },
+  {
+    "agency_id": "AG002",
+    "agency_name": "Riad Conseil",
+    "city": "Marrakech",
+    "email": "data@riad-conseil.example"
+  },
+  {
+    "agency_id": "AG003",
+    "agency_name": "Capital Homes",
+    "city": "Rabat",
+    "email": "data@capital-homes.example"
+  },
+  {
+    "agency_id": "AG004",
+    "agency_name": "Souss Immobilier",
+    "city": "Agadir",
+    "email": "data@souss-immobilier.example"
+  }
+]

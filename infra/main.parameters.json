@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "namePrefix": { "value": "replace-me" },
+    "location": { "value": "westeurope" },
+    "sqlAdministratorLogin": { "value": "replace-at-deploy-time" },
+    "tags": {
+      "value": {
+        "workload": "real-estate-data-platform",
+        "environment": "dev",
+        "owner": "Hamza Bakh"
+      }
+    }
+  }
+}

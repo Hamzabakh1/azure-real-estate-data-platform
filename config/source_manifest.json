@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "entity": "agencies",
+      "file": "agencies.json",
+      "format": "json",
+      "load_strategy": "full_snapshot"
+    },
+    {
+      "entity": "listings",
+      "file": "listings.csv",
+      "format": "csv",
+      "load_strategy": "daily_snapshot"
+    },
+    {
+      "entity": "transactions",
+      "file": "transactions.csv",
+      "format": "csv",
+      "load_strategy": "incremental"
+    }
+  ]
+}

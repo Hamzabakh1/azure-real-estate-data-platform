@@ -1,0 +1,10 @@
+transaction_id,listing_id,transaction_date,sale_price_mad,buyer_type,payment_method
+T001,L004,2026-07-14,1900000,individual,mortgage
+T002,L006,2026-06-19,1695000,individual,cash
+T003,L001,2026-08-28,1240000,individual,mortgage
+T004,L003,2026-08-30,2380000,company,bank_transfer
+T005,L008,2026-09-02,1155000,individual,mortgage
+T006,L009,2026-08-16,2050000,individual,cash
+T007,L011,2026-08-08,2280000,individual,bank_transfer
+T008,L012,2026-09-01,1275000,company,bank_transfer
+T009,L999,2026-09-03,0,unknown,unknown

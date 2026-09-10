@@ -1,0 +1,78 @@
+{
+  "name": "pl_real_estate_master",
+  "properties": {
+    "description": "Master orchestration for source landing, Bronze ingestion, quality gate, and Gold publication.",
+    "parameters": {
+      "snapshotDate": { "type": "String", "defaultValue": "@formatDateTime(utcnow(), 'yyyy-MM-dd')" }
+    },
+    "variables": {
+      "runId": { "type": "String" }
+    },
+    "activities": [
+      {
+        "name": "Create run identifier",
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "runId",
+          "value": { "value": "@formatDateTime(utcnow(), 'yyyyMMddTHHmmssZ')", "type": "Expression" }
+        }
+      },
+      {
+        "name": "For each source entity",
+        "type": "ForEach",
+        "dependsOn": [{ "activity": "Create run identifier", "dependencyConditions": ["Succeeded"] }],
+        "typeProperties": {
+          "isSequential": false,
+          "batchCount": 3,
+          "items": [
+            { "entity": "listings", "file": "listings.csv" },
+            { "entity": "transactions", "file": "transactions.csv" }
+          ],
+          "activities": [
+            {
+              "name": "Ingest source into Bronze",
+              "type": "ExecutePipeline",
+              "typeProperties": {
+                "pipeline": { "referenceName": "pl_copy_to_bronze", "type": "PipelineReference" },
+                "waitOnCompletion": true,
+                "parameters": {
+                  "entity": { "value": "@item().entity", "type": "Expression" },
+                  "sourceFile": { "value": "@item().file", "type": "Expression" },
+                  "snapshotDate": { "value": "@pipeline().parameters.snapshotDate", "type": "Expression" },
+                  "runId": { "value": "@variables('runId')", "type": "Expression" }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Publish Gold marts",
+        "type": "StoredProcedure",
+        "dependsOn": [
+          { "activity": "For each source entity", "dependencyConditions": ["Succeeded"] },
+          { "activity": "Ingest agency reference", "dependencyConditions": ["Succeeded"] }
+        ],
+        "linkedServiceName": { "referenceName": "ls_azure_sql_managed_identity", "type": "LinkedServiceReference" },
+        "typeProperties": {
+          "storedProcedureName": "etl.usp_publish_real_estate_marts"
+        }
+      },
+      {
+        "name": "Ingest agency reference",
+        "type": "ExecutePipeline",
+        "dependsOn": [{ "activity": "Create run identifier", "dependencyConditions": ["Succeeded"] }],
+        "typeProperties": {
+          "pipeline": { "referenceName": "pl_copy_reference_to_bronze", "type": "PipelineReference" },
+          "waitOnCompletion": true,
+          "parameters": {
+            "entity": "agencies",
+            "sourceFile": "agencies.json",
+            "snapshotDate": { "value": "@pipeline().parameters.snapshotDate", "type": "Expression" },
+            "runId": { "value": "@variables('runId')", "type": "Expression" }
+          }
+        }
+      }
+    ]
+  }
+}
