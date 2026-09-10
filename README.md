@@ -67,10 +67,3 @@ tests/                     Quality, end-to-end, and idempotency coverage
 
 This is a portfolio-quality reference implementation, not a deployed production tenant. A production rollout needs subscription-specific networking, private endpoints, Azure SQL Entra administration, retention policy, formal source agreements, and a cost review. The architecture intentionally keeps all real credentials and service endpoints out of Git.
 
-## CV entry
-
-The polished French CV section is ready in [`docs/cv-entry.tex`](docs/cv-entry.tex).
-
-## Icon attribution
-
-Azure product icons are the official [Azure Architecture Icons](https://learn.microsoft.com/azure/architecture/icons/) and are used to identify Microsoft services in the diagram.
