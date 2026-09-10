@@ -8,7 +8,6 @@ from .config import PlatformPaths
 from .io_utils import read_csv, read_json, write_csv
 from .quality import QualityIssue, normalize_agency, normalize_listing, normalize_transaction
 
-
 AGENCY_FIELDS = ["agency_id", "agency_name", "city", "email"]
 LISTING_FIELDS = [
     "listing_id",

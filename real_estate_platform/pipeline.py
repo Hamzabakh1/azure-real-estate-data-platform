@@ -24,7 +24,7 @@ def run_pipeline(
 ) -> dict[str, Any]:
     """Run Bronze → Silver → Gold with checkpointing and operational metadata."""
 
-    snapshot_date = as_of or date.today().isoformat()
+    snapshot_date = as_of or datetime.now(timezone.utc).date().isoformat()
     date.fromisoformat(snapshot_date)
     paths = PlatformPaths.create(repo_root, runtime_root)
     paths.prepare_runtime()

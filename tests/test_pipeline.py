@@ -7,7 +7,6 @@ from pathlib import Path
 
 from real_estate_platform.pipeline import run_pipeline
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 

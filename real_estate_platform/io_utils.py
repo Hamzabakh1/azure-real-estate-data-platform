@@ -4,8 +4,9 @@ import csv
 import hashlib
 import json
 import os
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:

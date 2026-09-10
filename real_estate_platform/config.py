@@ -19,7 +19,7 @@ class PlatformPaths:
     @classmethod
     def create(
         cls, repo_root: str | Path | None = None, runtime_root: str | Path | None = None
-    ) -> "PlatformPaths":
+    ) -> PlatformPaths:
         repository = Path(repo_root or Path.cwd()).resolve()
         runtime = Path(runtime_root or repository).resolve()
         return cls(repository, runtime)
